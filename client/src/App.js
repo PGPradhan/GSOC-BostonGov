@@ -2,69 +2,65 @@ import { useState, useEffect, useRef } from 'react';
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
 function App() {
-    const [isModelLoading, setIsModelLoading] = useState(false);
-    const [model, setModel] = useState(null);
+    const [isModelLoading, setIsModelLoading] = useState(false)
+    const [model, setModel] = useState(null)
     const [imageURL, setImageURL] = useState(null);
-    const [results, setResults] = useState([]);
-    const [history, setHistory] = useState([]);
+    const [results, setResults] = useState([])
+    const [history, setHistory] = useState([])
 
-    const imageRef = useRef();
-    const textInputRef = useRef();
-    const fileInputRef = useRef();
+    const imageRef = useRef()
+    const textInputRef = useRef()
+    const fileInputRef = useRef()
 
     const loadModel = async () => {
-        setIsModelLoading(true);
+        setIsModelLoading(true)
         try {
-            const model = await mobilenet.load();
-            setModel(model);
-            setIsModelLoading(false);
+            const model = await mobilenet.load()
+            setModel(model)
+            setIsModelLoading(false)
         } catch (error) {
-            console.log(error);
-            setIsModelLoading(false);
+            console.log(error)
+            setIsModelLoading(false)
         }
-    };
+    }
 
     const uploadImage = (e) => {
-        const { files } = e.target;
+        const { files } = e.target
         if (files.length > 0) {
-            const url = URL.createObjectURL(files[0]);
-            setImageURL(url);
+            const url = URL.createObjectURL(files[0])
+            setImageURL(url)
         } else {
-            setImageURL(null);
+            setImageURL(null)
         }
-    };
+    }
 
     const identify = async () => {
-        textInputRef.current.value = '';
-        if (model) {
-            const results = await model.classify(imageRef.current);
-            setResults(results);
-        } else {
-            console.log('Model is not loaded');
-        }
-    };
+        textInputRef.current.value = ''
+        const results = await model.classify(imageRef.current)
+        setResults(results)
+    }
 
     const handleOnChange = (e) => {
-        setImageURL(e.target.value);
-        setResults([]);
-    };
+        setImageURL(e.target.value)
+        setResults([])
+    }
 
     const triggerUpload = () => {
-        fileInputRef.current.click();
-    };
+        fileInputRef.current.click()
+    }
 
     useEffect(() => {
-        loadModel();
-    }, []);
+        loadModel()
+    }, [])
 
     useEffect(() => {
         if (imageURL) {
-            setHistory([imageURL, ...history]);
+            setHistory([imageURL, ...history])
         }
-    }, [imageURL]);
+    }, [imageURL])
 
     if (isModelLoading) {
-        return <h2>Model Loading...</h2>;
+        return <h2>Model Loading...</h2>
     }
 
     return (

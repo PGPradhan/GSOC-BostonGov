@@ -9,3 +9,6 @@ Training: Train the selected model using the prepared dataset. I will check the 
 Integration: Integrate the trained model into the 311 apps' infrastructure, allowing residents to easily snap a photo of an issue and submit a request. Provide feedback to users on the status of their requests.
 
 Day 0: Create a githun repository. Started with the frontend first by creating a react-app. 
+
+Day 1 : Done with creating a basic React UI for image recognition.
+
