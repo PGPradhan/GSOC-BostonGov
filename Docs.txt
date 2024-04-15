@@ -12,3 +12,12 @@ Day 0: Create a githun repository. Started with the frontend first by creating a
 
 Day 1 : Done with creating a basic React UI for image recognition.
 
+Day 2:  Tried React and Tensorflow integration
+
+Day 3: Did some research on picking the model of better accuracy
+
+Day 4: Tested YOLOV8 having CNN on the custom dataset
+
+Day 5: Worked on Images and labels of dataset
+
+Day 6 : Developed a Geotag system to get location information from Image
